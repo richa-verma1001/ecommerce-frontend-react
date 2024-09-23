@@ -1,35 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// import { useState } from "react";
+// import reactLogo from "./assets/react.svg";
+// import viteLogo from "/vite.svg";
+import React from "react";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Catalog from "./pages/Catalog";
+import CatalogItem from "./pages/CatalogItem";
+import Cart from "./pages/Cart";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [numCartItems, setNumCartItems] = React.useState(0);
 
+  function handleAddToCart() {
+    console.log("Add to cart");
+    setNumCartItems((prev) => prev + 1);
+  }
+  function handleRemoveFromCart() {
+    console.log("Remove from cart");
+    setNumCartItems((prev) => prev - 1);
+  }
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home cartTotal={numCartItems} />}>
+            {/* <Route index element={<Home />} /> */}
+            <Route
+              path="/catalog"
+              element={
+                <Catalog add={handleAddToCart} remove={handleRemoveFromCart} />
+              }
+            />
+            <Route path="/catalog/:id" element={<CatalogItem />} />
+            {/* </Route> */}
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/about" element={<About />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
