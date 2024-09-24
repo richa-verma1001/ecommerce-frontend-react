@@ -11,21 +11,66 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 function App() {
-  const [numCartItems, setNumCartItems] = React.useState(0);
+  const [cartItems, setCartItems] = React.useState([]);
+  const cartTotal = getCartTotal();
 
-  function handleAddToCart() {
-    console.log("Add to cart");
-    setNumCartItems((prev) => prev + 1);
+  function handleAddToCart(updatedItem) {
+    setCartItems((prev) => {
+      if (isExistingItem(updatedItem)) {
+        return prev.map((item) =>
+          item._id === updatedItem._id
+            ? {
+                ...item,
+                cartQuantity: (item.cartQuantity || 0) + 1,
+              }
+            : item
+        );
+      } else {
+        return [...prev, { ...updatedItem, cartQuantity: 1 }];
+      }
+    });
   }
-  function handleRemoveFromCart() {
-    console.log("Remove from cart");
-    setNumCartItems((prev) => prev - 1);
+
+  function updateItemQuantity(item) {
+    return { ...item, cartQuantity: (item.cartQuantity || 0) + 1 };
   }
+  function isExistingItem(item) {
+    return cartItems.find((elem) => elem._id === item._id);
+  }
+
+  function handleRemoveFromCart(updatedItem) {
+    setCartItems((prev) => {
+      if (isExistingItem(updatedItem)) {
+        return prev.map((item) =>
+          item._id === updatedItem._id &&
+          item.cartQuantity &&
+          item.cartQuantity == 1
+            ? null
+            : item._id === updatedItem._id
+            ? {
+                ...item,
+                cartQuantity: (item.cartQuantity || 0) - 1,
+              }
+            : item
+        );
+      }
+      // else {
+      //   return [...prev, { ...updatedItem, cartQuantity: 1 }];
+      // }
+    });
+  }
+
+  function getCartTotal() {
+    return cartItems.length !== 0
+      ? cartItems.reduce((acc, curr) => acc + curr.cartQuantity, 0)
+      : 0;
+  }
+
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home cartTotal={numCartItems} />}>
+          <Route path="/" element={<Home cartTotal={cartTotal} />}>
             {/* <Route index element={<Home />} /> */}
             <Route
               path="/catalog"
@@ -35,7 +80,7 @@ function App() {
             />
             <Route path="/catalog/:id" element={<CatalogItem />} />
             {/* </Route> */}
-            <Route path="/cart" element={<Cart />} />
+            <Route path="/cart" element={<Cart items={cartItems} />} />
             <Route path="/about" element={<About />} />
           </Route>
         </Routes>

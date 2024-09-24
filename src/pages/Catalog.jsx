@@ -26,10 +26,9 @@ export default function Catalog({ add, remove }) {
         </NavLink>
         <p>{item.name}</p>
         <p>{item.category}</p>
-        <p>{item.quantity}</p>
         <div className="catalog-item-buttonList">
-          <button onClick={remove}>-</button>
-          <button onClick={add}>+</button>
+          <button onClick={() => remove(item)}>-</button>
+          <button onClick={() => add(item)}>+</button>
         </div>
       </li>
     ));
