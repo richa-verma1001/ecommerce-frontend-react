@@ -12,7 +12,6 @@ export default function Categories({ handleCategory }) {
   }, []);
 
   function renderCategories() {
-    console.log(categories);
     return categories.map((category) => (
       <li key={category._id}>
         <button onClick={() => handleCategory(category)}>

@@ -5,15 +5,17 @@ import "../styles/catalog.css";
 import imageLogo from "/images/image.svg";
 
 export default function Catalog({ add, remove, category }) {
+  console.log("Render Catalog: category.name" + category?.name);
   const [allItems, setAllItems] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
-  const categoryName = category?.name || "";
-  const url =
-    categoryName !== ""
-      ? `${config.API_BASE_URL}/products?category=${categoryName}`
-      : `${config.API_BASE_URL}/products`;
 
   React.useEffect(() => {
+    const categoryName = category?.name || "";
+    const url =
+      categoryName !== ""
+        ? `${config.API_BASE_URL}/products?category=${categoryName}`
+        : `${config.API_BASE_URL}/products`;
+    console.log("Render Catalog: fetch url" + url);
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -21,7 +23,7 @@ export default function Catalog({ add, remove, category }) {
         setLoading(false);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [category]);
 
   function renderProductList() {
     return allItems.map((item) => (
