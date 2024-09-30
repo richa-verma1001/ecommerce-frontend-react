@@ -3,7 +3,6 @@ import config from "../config/config";
 import { useParams } from "react-router-dom";
 
 export default function CatalogItem() {
-  console.log("Render catalog item");
   const params = useParams();
   const [product, setProduct] = React.useState({});
   const [loading, setLoading] = React.useState(true);

@@ -3,6 +3,7 @@
 // import viteLogo from "/vite.svg";
 import React from "react";
 import Home from "./pages/Home";
+import Layout from "./pages/Layout";
 import About from "./pages/About";
 import Catalog from "./pages/Catalog";
 import CatalogItem from "./pages/CatalogItem";
@@ -31,37 +32,34 @@ function App() {
     });
   }
 
-  function updateItemQuantity(item) {
-    return { ...item, cartQuantity: (item.cartQuantity || 0) + 1 };
-  }
   function isExistingItem(item) {
     return cartItems.find((elem) => elem._id === item._id);
   }
 
+  // TODO: handle disable button for 0 or negative quantities
   function handleRemoveFromCart(updatedItem) {
-    setCartItems((prev) => {
-      if (isExistingItem(updatedItem)) {
-        return prev.map((item) =>
-          item._id === updatedItem._id &&
-          item.cartQuantity &&
-          item.cartQuantity == 1
-            ? null
-            : item._id === updatedItem._id
-            ? {
-                ...item,
-                cartQuantity: (item.cartQuantity || 0) - 1,
-              }
-            : item
-        );
-      }
-      // else {
-      //   return [...prev, { ...updatedItem, cartQuantity: 1 }];
-      // }
-    });
+    cartItems &&
+      cartItems.length > 0 &&
+      setCartItems((prev) => {
+        if (isExistingItem(updatedItem)) {
+          return prev.map((item) =>
+            item._id === updatedItem._id &&
+            item.cartQuantity &&
+            item.cartQuantity == 1
+              ? null
+              : item._id === updatedItem._id
+              ? {
+                  ...item,
+                  cartQuantity: (item.cartQuantity || 0) - 1,
+                }
+              : item
+          );
+        }
+      });
   }
 
   function getCartTotal() {
-    return cartItems.length !== 0
+    return cartItems && cartItems.length !== 0
       ? cartItems.reduce((acc, curr) => acc + curr.cartQuantity, 0)
       : 0;
   }
@@ -71,7 +69,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home cartTotal={cartTotal} />}>
-            {/* <Route index element={<Home />} /> */}
+            <Route
+              index
+              element={
+                <Layout add={handleAddToCart} remove={handleRemoveFromCart} />
+              }
+            />
             <Route
               path="/catalog"
               element={

@@ -1,0 +1,13 @@
+.homePageLayout {
+  display: flex;
+  gap: 40px;
+  padding-top: 2rem;
+}
+
+.homePageLayout .sideNav {
+  display: flex;
+}
+
+.homePageLayout .mainContent{
+  display: flex;
+}

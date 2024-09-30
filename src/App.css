@@ -5,7 +5,7 @@
 }
 
 .container {
-  max-width: 60vw;
+  width: 60vw;
   display: flex;
   flex-direction: column;
   border: 1px solid black;
@@ -13,9 +13,12 @@
   flex-wrap: wrap;
 }
 
-ul.navbar {
-  display: flex;
+ul {
   list-style: none;
+}
+
+ul.navbar {
+  display: flex;  
   gap: 20px;
 }
 

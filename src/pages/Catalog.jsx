@@ -4,12 +4,17 @@ import { NavLink, Outlet } from "react-router-dom";
 import "../styles/catalog.css";
 import imageLogo from "/images/image.svg";
 
-export default function Catalog({ add, remove }) {
+export default function Catalog({ add, remove, category }) {
   const [allItems, setAllItems] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+  const categoryName = category?.name || "";
+  const url =
+    categoryName !== ""
+      ? `${config.API_BASE_URL}/products?category=${categoryName}`
+      : `${config.API_BASE_URL}/products`;
 
   React.useEffect(() => {
-    fetch(`${config.API_BASE_URL}/products`)
+    fetch(url)
       .then((res) => res.json())
       .then((data) => {
         setAllItems(data);
