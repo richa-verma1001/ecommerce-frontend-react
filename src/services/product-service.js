@@ -20,8 +20,14 @@ class ProductService {
 
   }
 
-  removeProduct(){
-
+  async removeProduct(productId){
+    try{
+      const res = await fetch(`${config.API_BASE_URL}/products/${productId}`, { method: 'DELETE'});
+      const data = await res.json();
+      return data;
+    }catch(err){
+      throw new Error(`Failed to delete product: ${productId}`);
+    } 
   }
 
   updateProduct(){

@@ -1,6 +1,5 @@
 import React from "react";
 import "../styles/categories.css";
-// import config from "../config/config";
 import CategoryService from "../services/categories-service";
 
 export default function Categories({ handleCategory }) {

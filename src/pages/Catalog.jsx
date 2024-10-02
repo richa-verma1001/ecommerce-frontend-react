@@ -23,6 +23,16 @@ export default function Catalog({ add, remove, category }) {
       .finally(() => setLoading(false));
   }, [category]);
 
+  function handleDelete(product) {
+    ProductService.removeProduct(product._id)
+      .then((result) => {
+        setAllItems((prev) => {
+          return prev.filter((item) => item._id !== product._id);
+        });
+      })
+      .catch((e) => setError(e));
+  }
+
   function renderProductList() {
     return allItems.map((item) => (
       <li key={item._id}>
@@ -34,6 +44,7 @@ export default function Catalog({ add, remove, category }) {
         <div className="catalog-item-buttonList">
           <button onClick={() => remove(item)}>-</button>
           <button onClick={() => add(item)}>+</button>
+          <button onClick={() => handleDelete(item)}>x</button>
         </div>
       </li>
     ));
@@ -42,12 +53,10 @@ export default function Catalog({ add, remove, category }) {
 
   return (
     <>
-      <div>
-        <h3>CatalogPage</h3>
-        {error && <div>{error.message}</div>}
-        <ul className="catalog-products">{renderProductList()}</ul>
-        <p></p>
-      </div>
+      {/* <h3>CatalogPage</h3> */}
+      {error && <div className="error">{error.message}</div>}
+      <ul className="catalog-products">{renderProductList()}</ul>
+      <p></p>
       {/* <div>
         <Outlet />
       </div> */}

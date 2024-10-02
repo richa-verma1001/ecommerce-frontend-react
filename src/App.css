@@ -10,7 +10,6 @@
   flex-direction: column;
   border: 1px solid black;
   padding: 2rem;
-  flex-wrap: wrap;
 }
 
 ul {
@@ -33,6 +32,11 @@ ul.navbar {
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.error {
+  background-color: yellow;
+  color: red;
 }
 
 @keyframes logo-spin {
