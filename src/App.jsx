@@ -9,6 +9,7 @@ import Catalog from "./pages/Catalog";
 import CatalogItem from "./pages/CatalogItem";
 import Cart from "./pages/Cart";
 import AddProduct from "./pages/admin/AddProduct";
+import RegisterUser from "./pages/user/RegisterUser";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 
@@ -87,6 +88,7 @@ function App() {
             <Route path="/cart" element={<Cart items={cartItems} />} />
             <Route path="/about" element={<About />} />
             <Route path="/addproduct" element={<AddProduct />} />
+            <Route path="/register" element={<RegisterUser />} />
           </Route>
         </Routes>
       </BrowserRouter>

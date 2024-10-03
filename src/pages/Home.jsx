@@ -21,6 +21,9 @@ export default function Home({ cartTotal }) {
           <li>
             <NavLink to="/cart">Cart {cartTotal}</NavLink>
           </li>
+          <li>
+            <NavLink to="/register">Register</NavLink>
+          </li>
         </ul>
       </header>
       <main>

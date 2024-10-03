@@ -18,21 +18,19 @@ class ProductService {
 
   async addProduct(data){
     const url = `${config.API_BASE_URL}/product`;
-    const res = await fetch(url, { 
+    return await fetch(url, { 
         method: 'POST', 
         headers: { 
           'Content-type': 'application/json'
         },
         body: JSON.stringify(data)
       });
-    return res;
   }
 
   async removeProduct(productId){
     try{
       const res = await fetch(`${config.API_BASE_URL}/products/${productId}`, { method: 'DELETE'});
-      const data = await res.json();
-      return data;
+      return await res.json();
     }catch(err){
       throw new Error(`Failed to delete product: ${productId}`);
     } 
