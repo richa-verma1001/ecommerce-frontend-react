@@ -16,6 +16,9 @@ export default function Home({ cartTotal }) {
             <NavLink to="/catalog">Catalog</NavLink>
           </li>
           <li>
+            <NavLink to="/addproduct">Add Products</NavLink>
+          </li>
+          <li>
             <NavLink to="/cart">Cart {cartTotal}</NavLink>
           </li>
         </ul>

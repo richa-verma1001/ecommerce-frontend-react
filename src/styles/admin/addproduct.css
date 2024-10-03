@@ -1,0 +1,10 @@
+.addProduct {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.addProduct > div {
+  display: flex;
+  flex-direction: column;
+}

@@ -7,9 +7,6 @@ export default function Layout({ add, remove }) {
   const [selectecCategory, setSelectedCategory] = React.useState({});
 
   function updateCategory(category) {
-    console.log(
-      "Layout: update category selection and set for catalog" + category.name
-    );
     setSelectedCategory((prev) => category);
   }
   return (

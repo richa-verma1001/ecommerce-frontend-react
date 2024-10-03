@@ -16,8 +16,16 @@ class ProductService {
     }    
   }
 
-  addProduct(){
-
+  async addProduct(data){
+    const url = `${config.API_BASE_URL}/product`;
+    const res = await fetch(url, { 
+        method: 'POST', 
+        headers: { 
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+    return res;
   }
 
   async removeProduct(productId){

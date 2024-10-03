@@ -1,5 +1,6 @@
 import config from "../config/config";
 
+// TODO: look into abstracting into a usehook
 class CategoryService {
   async getCategories() {
     try{
@@ -8,9 +9,7 @@ class CategoryService {
       return data;
     }catch(err){
       throw new Error("Unable to fetch categories");
-    }
-    
-      
+    }      
   }
 
   updateCategory() {
