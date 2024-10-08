@@ -1,5 +1,6 @@
 import React from "react";
 import { Outlet, NavLink } from "react-router-dom";
+import Login from "./Login";
 
 export default function Home({ cartTotal }) {
   return (
@@ -20,6 +21,11 @@ export default function Home({ cartTotal }) {
           </li>
           <li>
             <NavLink to="/cart">Cart {cartTotal}</NavLink>
+          </li>
+          <li>
+            <NavLink to="/login">
+              <Login />
+            </NavLink>
           </li>
           <li>
             <NavLink to="/register">Register</NavLink>
