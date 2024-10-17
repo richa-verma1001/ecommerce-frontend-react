@@ -1,8 +1,16 @@
-# React + Vite
+# Shopping Cart (Ecommerce application examples)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Primary Featues
 
-Currently, two official plugins are available:
+- State Management - Cart Management/ Add|Remove Items
+- Sort and Filter Catalog Items
+- New User Registeration (MongoDB)
+- Authentication (Auth0)
+- Access Control | Session Management - Individual Carts
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Notes
+
+#### Auth0 Integration
+
+- https://manage.auth0.com/dashboard/us/dev-00twbc5zjstbgrtt/applications (via github login)
+- Docs and API integration: https://auth0.com/docs/quickstart/spa/react/interactive

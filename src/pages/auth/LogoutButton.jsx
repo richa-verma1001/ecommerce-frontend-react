@@ -7,13 +7,14 @@ function LogoutButton() {
   return (
     <div>
       {isAuthenticated && (
-        <button
+        <a
+          href="#"
           onClick={() =>
             logout({ logoutParams: { returnTo: window.location.origin } })
           }
         >
           Logout
-        </button>
+        </a>
       )}
     </div>
   );
