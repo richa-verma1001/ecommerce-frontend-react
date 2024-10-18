@@ -14,3 +14,8 @@
 
 - https://manage.auth0.com/dashboard/us/dev-00twbc5zjstbgrtt/applications (via github login)
 - Docs and API integration: https://auth0.com/docs/quickstart/spa/react/interactive
+
+#### Pending
+
+- Cart session per user
+- Cart page UI
