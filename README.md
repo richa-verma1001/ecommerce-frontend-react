@@ -19,3 +19,13 @@
 
 - Cart session per user
 - Cart page UI
+- Use docker to bundle app in container
+- Enable CI/CD
+
+#### Docker
+
+create docker image using -
+
+```docker build -t ecommerce-backend-nodejs .
+
+```

@@ -30,9 +30,9 @@ export default function Home({ cartTotal }) {
             </>
           )}
           <li>
-            <NavLink to="/login">
-              <Login />
-            </NavLink>
+            {/* <NavLink to="/login"> */}
+            <Login />
+            {/* </NavLink> */}
           </li>
           {/* <li>
             <NavLink to="/register">Register</NavLink>

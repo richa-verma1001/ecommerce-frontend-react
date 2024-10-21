@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/admin/addProduct.css";
+import "../../styles/admin/addproduct.css";
 import CategoryService from "../../services/categories-service";
 import ProductService from "../../services/product-service";
 
