@@ -4,7 +4,7 @@ import Login from "./Login";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Home({ cartTotal }) {
-  const { isAuthenticated } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
 
   return (
     <div className="container">
@@ -21,9 +21,12 @@ export default function Home({ cartTotal }) {
               <li>
                 <NavLink to="/catalog">Catalog</NavLink>
               </li>
-              <li>
-                <NavLink to="/addproduct">Add Products</NavLink>
-              </li>
+              {/** TODO: Replace with RBAC (role based access control) */}
+              {user.name === "Richa Verma" && (
+                <li>
+                  <NavLink to="/addproduct">Add Products</NavLink>
+                </li>
+              )}
               <li>
                 <NavLink to="/cart">Cart {cartTotal}</NavLink>
               </li>
