@@ -1,11 +1,15 @@
 import React from "react";
-import config from "../config/config";
-import { NavLink, Outlet } from "react-router-dom";
+import CatalogItemTile from "./CatalogItemTile";
 import "../styles/catalog.css";
-import imageLogo from "/images/image.svg";
 import ProductService from "../services/product-service";
 
-export default function Catalog({ add, remove, category }) {
+export default function Catalog({
+  isAuthenticated,
+  user,
+  add,
+  remove,
+  category,
+}) {
   const [allItems, setAllItems] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
@@ -36,16 +40,14 @@ export default function Catalog({ add, remove, category }) {
   function renderProductList() {
     return allItems.map((item) => (
       <li key={item._id}>
-        <NavLink to={`./${item._id}`}>
-          <img src={imageLogo} alt="image-logo" width="20px" height="20px" />
-        </NavLink>
-        <p>{item.name}</p>
-        <p>{item.category}</p>
-        <div className="catalog-item-buttonList">
-          <button onClick={() => remove(item)}>-</button>
-          <button onClick={() => add(item)}>+</button>
-          <button onClick={() => handleDelete(item)}>x</button>
-        </div>
+        <CatalogItemTile
+          isAuthenticated={isAuthenticated}
+          user={user}
+          item={item}
+          add={add}
+          remove={remove}
+          deleteItem={handleDelete}
+        />
       </li>
     ));
   }

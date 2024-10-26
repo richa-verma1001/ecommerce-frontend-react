@@ -18,7 +18,7 @@ export default function Categories({ handleCategory }) {
     return categories.map((category) => (
       <li key={category._id}>
         <button onClick={() => handleCategory(category)}>
-          {category.name}
+          {category.name.toUpperCase()}
         </button>
       </li>
     ));
@@ -30,6 +30,7 @@ export default function Categories({ handleCategory }) {
   return (
     <div className="sidenav-categories">
       {error && <div>{error.message}</div>}
+      <h2 className="heading">DISCOVER</h2>
       <ul>{renderCategories()}</ul>
     </div>
   );

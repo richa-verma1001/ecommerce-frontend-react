@@ -8,7 +8,7 @@ function LoginButton() {
   return (
     <div>
       {!isAuthenticated && (
-        <a href="#" onClick={() => loginWithRedirect()}>
+        <a className="navbar" href="#" onClick={() => loginWithRedirect()}>
           Login
         </a>
       )}

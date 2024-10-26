@@ -1,5 +1,18 @@
-.sidenav-categories ul {
+.heading {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+}
+.sidenav-categories ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 16px;
+}
+
+.sidenav-categories ul > li > button {
+  width: 150px;
+  height: 150px;
+  background: white;
+  /* box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.5); */
 }

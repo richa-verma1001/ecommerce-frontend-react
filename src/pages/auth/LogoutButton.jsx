@@ -8,6 +8,7 @@ function LogoutButton() {
     <div>
       {isAuthenticated && (
         <a
+          className="navbar"
           href="#"
           onClick={() =>
             logout({ logoutParams: { returnTo: window.location.origin } })

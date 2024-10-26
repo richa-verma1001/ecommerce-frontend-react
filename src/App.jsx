@@ -1,6 +1,3 @@
-// import { useState } from "react";
-// import reactLogo from "./assets/react.svg";
-// import viteLogo from "/vite.svg";
 import React from "react";
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
@@ -11,13 +8,19 @@ import Cart from "./pages/Cart";
 import AddProduct from "./pages/admin/AddProduct";
 import RegisterUser from "./pages/user/RegisterUser";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import "./App.css";
 
 function App() {
-  const [cartItems, setCartItems] = React.useState([]);
-  const cartTotal = getCartTotal();
+  const { isAuthenticated, user } = useAuth0();
+
+  const [cartItems, setCartItems] = React.useState(
+    JSON.parse(localStorage.getItem(user?.sub)) || []
+  );
+  const cartCount = getCartCount();
 
   function handleAddToCart(updatedItem) {
+    console.log(cartItems);
     setCartItems((prev) => {
       if (isExistingItem(updatedItem)) {
         return prev.map((item) =>
@@ -32,6 +35,7 @@ function App() {
         return [...prev, { ...updatedItem, cartQuantity: 1 }];
       }
     });
+    localStorage.setItem(user.sub, JSON.stringify(cartItems));
   }
 
   function isExistingItem(item) {
@@ -58,9 +62,10 @@ function App() {
           );
         }
       });
+    localStorage.setItem(user.sub, JSON.stringify(cartItems));
   }
 
-  function getCartTotal() {
+  function getCartCount() {
     return cartItems && cartItems.length !== 0
       ? cartItems.reduce((acc, curr) => acc + curr.cartQuantity, 0)
       : 0;
@@ -70,22 +75,50 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home cartTotal={cartTotal} />}>
+          <Route
+            path="/"
+            element={
+              <Home
+                isAuthenticated={isAuthenticated}
+                user={user}
+                cartCount={cartCount}
+              />
+            }
+          >
             <Route
               index
               element={
-                <Layout add={handleAddToCart} remove={handleRemoveFromCart} />
+                <Layout
+                  isAuthenticated={isAuthenticated}
+                  user={user}
+                  add={handleAddToCart}
+                  remove={handleRemoveFromCart}
+                />
               }
             />
             <Route
               path="/catalog"
               element={
-                <Catalog add={handleAddToCart} remove={handleRemoveFromCart} />
+                <Catalog
+                  isAuthenticated={isAuthenticated}
+                  user={user}
+                  add={handleAddToCart}
+                  remove={handleRemoveFromCart}
+                />
               }
             />
             <Route path="/catalog/:id" element={<CatalogItem />} />
             {/* </Route> */}
-            <Route path="/cart" element={<Cart items={cartItems} />} />
+            <Route
+              path="/cart"
+              element={
+                <Cart
+                  items={cartItems}
+                  add={handleAddToCart}
+                  remove={handleRemoveFromCart}
+                />
+              }
+            />
             <Route path="/about" element={<About />} />
             <Route path="/addproduct" element={<AddProduct />} />
             <Route path="/register" element={<RegisterUser />} />
