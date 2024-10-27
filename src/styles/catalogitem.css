@@ -1,0 +1,10 @@
+.product-page {
+  display: flex;
+  gap: 20px;
+  padding: 20px 0px;
+}
+
+.product-page__thumbnail {
+  width: 500px;
+  height: 500px;
+}

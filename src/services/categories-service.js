@@ -4,7 +4,8 @@ import config from "../config/config";
 class CategoryService {
   async getCategories() {
     try{
-      const res = await fetch(`${config.API_BASE_URL}/category`);
+      // const res = await fetch(`${config.API_BASE_URL}/category`);
+      const res = await fetch(`${config.API_BASE_URL}/categories`);
       const data = await res.json();
       return data;
     }catch(err){

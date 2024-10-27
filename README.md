@@ -34,3 +34,11 @@ create docker image using -
 #### CI/CD
 
 Auto Deploys enabled on 'Render' (render.com)
+
+# BRANCH UPDATE
+
+Updated Backend to -
+https://fakeapi.platzi.com/?ref=public_apis
+
+More APIs here -
+https://publicapis.dev/category/shopping

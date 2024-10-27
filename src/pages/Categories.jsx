@@ -10,8 +10,8 @@ export default function Categories({
   function renderCategories() {
     return categories.map((category) => (
       <li
-        key={category._id}
-        className={category._id === selectedCategory._id ? "selected" : ""}
+        key={category.id}
+        className={category.id === selectedCategory.id ? "selected" : ""}
       >
         <button onClick={() => handleCategory(category)}>
           {category.name.toUpperCase()}

@@ -51,7 +51,7 @@ function App() {
     console.log(updatedItem);
     setAllItems((prev) => {
       return prev.map((item) =>
-        item._id === updatedItem._id
+        item.id === updatedItem.id
           ? {
               ...item,
               cartQuantity: (item.cartQuantity || 0) + 1,
@@ -66,7 +66,7 @@ function App() {
     console.log(updatedItem);
     setAllItems((prev) => {
       return prev.map((item) =>
-        item._id === updatedItem._id
+        item.id === updatedItem.id
           ? { ...item, cartQuantity: item.cartQuantity - 1 }
           : item
       );

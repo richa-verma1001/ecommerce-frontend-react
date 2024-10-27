@@ -13,7 +13,7 @@ export default function Home({ isAuthenticated, user, cartCount }) {
           <div className="navbar-left">
             <li>
               <NavLink className="navbar" to="/">
-                #ShopART
+                #INSpired
               </NavLink>
             </li>
             <li>

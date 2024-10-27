@@ -7,7 +7,7 @@ export default function Cart({ items, add, remove }) {
     return items.map((item) => {
       if (item.cartQuantity > 0)
         return (
-          <li key={item._id}>
+          <li key={item.id}>
             <CatalogItemTile item={item} add={add} remove={remove} />
           </li>
         );

@@ -1,4 +1,5 @@
 import React from "react";
+import AddToCart from "./components/AddToCart";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
@@ -38,32 +39,19 @@ export default function CatalogItemTile({
   }
   return (
     <div className="product-tile">
-      <NavLink
-        className="product-tile__image"
-        to={`.${isHomePage}/${item._id}`}
-      >
-        <img src={item.imageUrl} alt="image-logo" />
+      <NavLink className="product-tile__image" to={`.${isHomePage}/${item.id}`}>
+        <img src={item.images[0]} alt="image-logo" />
       </NavLink>
       <div className="product-tile__info">
-        {/* <div className="left">
-          <NavLink
-            className="product-tile__desc "
-            to={`.${isHomePage}/${item._id}`}
-          >
-            <p>
-              {item.name.length > 15
-                ? `${item.name.slice(0, 15)}...`
-                : item.name}
-            </p>
-          </NavLink>
-        </div> */}
-        <div className="left catalog-item__buttonList">
-          <button onClick={() => removeFromCart(item)}>-</button>
-          {item.cartQuantity || 0}
-          <button onClick={() => addToCart(item)}>+</button>
-          {isAuthenticated && user.name === "Richa Verma" && (
-            <button onClick={() => deleteItem(item)}>x</button>
-          )}
+        <div className="left">
+          <AddToCart
+            isAuthenticated={isAuthenticated}
+            user={user}
+            item={item}
+            add={add}
+            remove={remove}
+            deleteItem={deleteItem}
+          />
         </div>
         <div
           className="right"

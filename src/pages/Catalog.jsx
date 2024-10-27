@@ -27,10 +27,10 @@ export default function Catalog({
         !category ||
         Object.keys(category).length === 0 ||
         category.name === "All Categories" ||
-        item.category === category.name
+        item.category.name === category.name
       )
         return (
-          <li key={item._id}>
+          <li key={item.id}>
             <CatalogItemTile
               isAuthenticated={isAuthenticated}
               user={user}
