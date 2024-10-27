@@ -1,6 +1,6 @@
 import React from "react";
-import "../styles/categories.css";
-import CategoryService from "../services/categories-service";
+import "../../styles/categories.css";
+import CategoryService from "../../services/categories-service";
 
 export default function Categories({
   categories,

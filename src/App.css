@@ -5,10 +5,11 @@
 }
 
 .container {
-  width: 60vw;
+  /* width: 60vw; */
   display: flex;
   flex-direction: column;
   border: 1px solid black;
+  gap: 40px;
   padding: 2rem;
   background: #FAFAFA;
 }

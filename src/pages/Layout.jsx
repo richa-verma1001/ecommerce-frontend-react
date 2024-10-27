@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/layout.css";
-import Categories from "./Categories";
+import Categories from "./components/Categories";
 import Catalog from "./Catalog";
 
 export default function Layout({
