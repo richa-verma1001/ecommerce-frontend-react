@@ -15,7 +15,10 @@ export default function CatalogItemTile({
   const location = useLocation();
   const [isFavorite, setIsFavorite] = React.useState(false);
   const [count, setCount] = React.useState(0);
-  const isHomePage = location.pathname === "/" ? "/catalog" : "";
+  const isHomePage =
+    location.pathname === "/" || location.pathname === "/cart"
+      ? "/catalog"
+      : "";
 
   // console.log(`item: ${item.name} count:${count}`);
   const tileCount =
@@ -38,10 +41,7 @@ export default function CatalogItemTile({
   }
   return (
     <div className="product-tile">
-      <NavLink
-        className="product-tile__image"
-        to={`.${isHomePage}/${item._id}`}
-      >
+      <NavLink className="product-tile__image" to={`/catalog/${item._id}`}>
         <img src={item.imageUrl} alt="image-logo" />
       </NavLink>
       <div className="product-tile__info">

@@ -1,6 +1,7 @@
 import React from "react";
 import config from "../config/config";
 import { useParams } from "react-router-dom";
+import "../styles/catalogitem.css";
 
 export default function CatalogItem() {
   const params = useParams();
@@ -16,13 +17,25 @@ export default function CatalogItem() {
   }, [params.id]);
 
   if (loading) return <div>Loading ..</div>;
-
+  console.log(product);
   return (
-    <div>
-      <h3>Catalog Item</h3>
-      <p>Name: {product.name}</p>
-      <p>Quantity: {product.quantity}</p>
-      <p>Category: {product.category}</p>
+    <div className="product-page">
+      <div className="left">
+        <img
+          className="product-page__thumbnail"
+          src={product.imageUrl || "./images/images.svg"}
+        ></img>
+      </div>
+      <div className="right">
+        <section>
+          <h3>{product.name}</h3>
+          <p>$ {product.price}</p>
+        </section>
+        <section>
+          <p>{product.description}</p>
+        </section>
+        <section></section>
+      </div>
     </div>
   );
 }
