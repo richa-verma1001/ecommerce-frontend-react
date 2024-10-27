@@ -5,11 +5,12 @@ import "../styles/catalog.css";
 export default function Cart({ items, add, remove }) {
   function renderCartItems() {
     return items.map((item) => {
-      return (
-        <li key={item._id}>
-          <CatalogItemTile item={item} add={add} remove={remove} />
-        </li>
-      );
+      if (item.cartQuantity > 0)
+        return (
+          <li key={item._id}>
+            <CatalogItemTile item={item} add={add} remove={remove} />
+          </li>
+        );
     });
   }
 

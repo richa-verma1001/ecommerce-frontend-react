@@ -20,20 +20,11 @@ function App() {
   const [categories, setCatgories] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
-  const [cartItems, setCartItems] = React.useState(
-    JSON.parse(localStorage.getItem(user?.sub)) || []
-  );
+
   const cartCount = getCartCount();
 
-  function updateCategory(category) {
-    console.log(category);
-    setSelectedCategory((prev) => category);
-  }
-
   React.useEffect(() => {
-    let categoryName = selectedCategory?.name || "";
-    categoryName = categoryName === "All Categories" ? "" : categoryName;
-    ProductService.getProducts(categoryName)
+    ProductService.getProducts()
       .then((data) => {
         setAllItems(data);
         setError(null);
@@ -42,7 +33,7 @@ function App() {
         setError(e);
       })
       .finally(() => setLoading(false));
-  }, [selectedCategory]);
+  }, []);
 
   React.useEffect(() => {
     CategoryService.getCategories()
@@ -51,56 +42,39 @@ function App() {
       .finally(() => setLoading(false));
   }, []);
 
-  function handleAddToCart(updatedItem) {
-    console.log(cartItems);
-    setCartItems((prev) => {
-      if (isExistingItem(updatedItem)) {
-        return prev.map((item) =>
-          item._id === updatedItem._id
-            ? {
-                ...item,
-                cartQuantity: (item.cartQuantity || 0) + 1,
-              }
-            : item
-        );
-      } else {
-        return [...prev, { ...updatedItem, cartQuantity: 1 }];
-      }
-    });
-    localStorage.setItem(user.sub, JSON.stringify(cartItems));
+  function updateCategory(category) {
+    console.log(category);
+    setSelectedCategory((prev) => category);
   }
 
-  function isExistingItem(item) {
-    return cartItems.find((elem) => elem._id === item._id);
+  function handleAddToCart(updatedItem) {
+    console.log(updatedItem);
+    setAllItems((prev) => {
+      return prev.map((item) =>
+        item._id === updatedItem._id
+          ? {
+              ...item,
+              cartQuantity: (item.cartQuantity || 0) + 1,
+            }
+          : item
+      );
+    });
   }
 
   // TODO: handle disable button for 0 or negative quantities
   function handleRemoveFromCart(updatedItem) {
-    cartItems &&
-      cartItems.length > 0 &&
-      setCartItems((prev) => {
-        if (isExistingItem(updatedItem)) {
-          return prev.map((item) =>
-            item._id === updatedItem._id &&
-            item.cartQuantity &&
-            item.cartQuantity == 1
-              ? null
-              : item._id === updatedItem._id
-              ? {
-                  ...item,
-                  cartQuantity: (item.cartQuantity || 0) - 1,
-                }
-              : item
-          );
-        }
-      });
-    localStorage.setItem(user.sub, JSON.stringify(cartItems));
+    console.log(updatedItem);
+    setAllItems((prev) => {
+      return prev.map((item) =>
+        item._id === updatedItem._id
+          ? { ...item, cartQuantity: item.cartQuantity - 1 }
+          : item
+      );
+    });
   }
 
   function getCartCount() {
-    return cartItems && cartItems.length !== 0
-      ? cartItems.reduce((acc, curr) => acc + curr.cartQuantity, 0)
-      : 0;
+    return allItems.reduce((acc, curr) => acc + (curr.cartQuantity || 0), 0);
   }
 
   return (
@@ -138,6 +112,7 @@ function App() {
                 <Catalog
                   isAuthenticated={isAuthenticated}
                   user={user}
+                  allItems={allItems}
                   add={handleAddToCart}
                   remove={handleRemoveFromCart}
                 />
@@ -149,7 +124,7 @@ function App() {
               path="/cart"
               element={
                 <Cart
-                  items={cartItems}
+                  items={allItems}
                   add={handleAddToCart}
                   remove={handleRemoveFromCart}
                 />

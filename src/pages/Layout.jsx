@@ -13,6 +13,7 @@ export default function Layout({
   remove,
   updateCategory,
 }) {
+  console.log(category);
   return (
     <div className="homePageLayout">
       <div className="mainContent">
@@ -20,6 +21,7 @@ export default function Layout({
           isAuthenticated={isAuthenticated}
           user={user}
           allItems={allItems}
+          category={category}
           add={add}
           remove={remove}
         />

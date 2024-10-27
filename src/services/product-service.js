@@ -4,7 +4,7 @@ class ProductService {
 
   async getProducts(categoryName){
     const url =
-      categoryName !== ""
+      categoryName && categoryName !== "" 
         ? `${config.API_BASE_URL}/products?category=${categoryName}`
         : `${config.API_BASE_URL}/products`;
     try{

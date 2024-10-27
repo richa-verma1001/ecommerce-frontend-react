@@ -7,6 +7,7 @@ export default function Catalog({
   isAuthenticated,
   user,
   allItems,
+  category,
   add,
   remove,
 }) {
@@ -21,18 +22,26 @@ export default function Catalog({
   }
 
   function renderProductList() {
-    return allItems.map((item) => (
-      <li key={item._id}>
-        <CatalogItemTile
-          isAuthenticated={isAuthenticated}
-          user={user}
-          item={item}
-          add={add}
-          remove={remove}
-          deleteItem={handleDelete}
-        />
-      </li>
-    ));
+    return allItems.map((item) => {
+      if (
+        !category ||
+        Object.keys(category).length === 0 ||
+        category.name === "All Categories" ||
+        item.category === category.name
+      )
+        return (
+          <li key={item._id}>
+            <CatalogItemTile
+              isAuthenticated={isAuthenticated}
+              user={user}
+              item={item}
+              add={add}
+              remove={remove}
+              deleteItem={handleDelete}
+            />
+          </li>
+        );
+    });
   }
   // if (loading) return <div>Loading ...</div>;
 

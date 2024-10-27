@@ -52,7 +52,7 @@ export default function CatalogItemTile({
           >
             <p>{item.name}</p>
           </NavLink>
-          <p>$ {item.price}</p>
+          {/* <p>$ {item.price}</p> */}
         </div>
         <div
           className="right"
@@ -67,7 +67,7 @@ export default function CatalogItemTile({
       </div>
       <div className="catalog-item__buttonList">
         <button onClick={() => removeFromCart(item)}>-</button>
-        {tileCount}
+        {item.cartQuantity || 0}
         <button onClick={() => addToCart(item)}>+</button>
         {isAuthenticated && user.name === "Richa Verma" && (
           <button onClick={() => deleteItem(item)}>x</button>
