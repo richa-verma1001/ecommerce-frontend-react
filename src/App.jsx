@@ -9,9 +9,9 @@ import AddProduct from "./pages/admin/AddProduct";
 import RegisterUser from "./pages/user/RegisterUser";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import "./App.css";
 import CategoryService from "./services/categories-service";
 import ProductService from "./services/product-service";
+import "./App.css";
 
 function App() {
   const { isAuthenticated, user } = useAuth0();

@@ -8,7 +8,7 @@ const Login = () => {
   return (
     <div className="auth-navBar">
       <LoginButton />
-      <UserProfile />
+      {/* <UserProfile /> */}
       <LogoutButton />
     </div>
   );
