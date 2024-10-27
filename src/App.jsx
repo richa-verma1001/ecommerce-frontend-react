@@ -31,7 +31,8 @@ function App() {
   }
 
   React.useEffect(() => {
-    const categoryName = selectedCategory?.name || "";
+    let categoryName = selectedCategory?.name || "";
+    categoryName = categoryName === "All Categories" ? "" : categoryName;
     ProductService.getProducts(categoryName)
       .then((data) => {
         setAllItems(data);
