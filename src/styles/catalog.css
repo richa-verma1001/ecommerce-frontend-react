@@ -45,13 +45,14 @@ a.product-tile__desc {
 
 .product-tile__info .left{
   display:flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: left;
 }
 
 .product-tile__info .right {
   display: flex;
   justify-content: right;
+  align-items: center;
 }
 
 .catalog-item__image {

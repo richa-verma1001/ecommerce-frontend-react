@@ -45,14 +45,25 @@ export default function CatalogItemTile({
         <img src={item.imageUrl} alt="image-logo" />
       </NavLink>
       <div className="product-tile__info">
-        <div className="left">
+        {/* <div className="left">
           <NavLink
             className="product-tile__desc "
             to={`.${isHomePage}/${item._id}`}
           >
-            <p>{item.name}</p>
+            <p>
+              {item.name.length > 15
+                ? `${item.name.slice(0, 15)}...`
+                : item.name}
+            </p>
           </NavLink>
-          {/* <p>$ {item.price}</p> */}
+        </div> */}
+        <div className="left catalog-item__buttonList">
+          <button onClick={() => removeFromCart(item)}>-</button>
+          {item.cartQuantity || 0}
+          <button onClick={() => addToCart(item)}>+</button>
+          {isAuthenticated && user.name === "Richa Verma" && (
+            <button onClick={() => deleteItem(item)}>x</button>
+          )}
         </div>
         <div
           className="right"
@@ -64,14 +75,6 @@ export default function CatalogItemTile({
             color={isFavorite ? "red" : "black"}
           />
         </div>
-      </div>
-      <div className="catalog-item__buttonList">
-        <button onClick={() => removeFromCart(item)}>-</button>
-        {item.cartQuantity || 0}
-        <button onClick={() => addToCart(item)}>+</button>
-        {isAuthenticated && user.name === "Richa Verma" && (
-          <button onClick={() => deleteItem(item)}>x</button>
-        )}
       </div>
     </div>
   );
