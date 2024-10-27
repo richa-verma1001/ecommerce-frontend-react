@@ -34,7 +34,7 @@ a.product-tile__desc {
 }
 
 .product-tile:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .product-tile__info {

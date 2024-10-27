@@ -1,8 +1,8 @@
 import React from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
-import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
+import { faBookmark as regularHeart } from "@fortawesome/free-regular-svg-icons";
+import { faBookmark as solidHeart } from "@fortawesome/free-solid-svg-icons";
 
 export default function CatalogItemTile({
   isAuthenticated,
@@ -72,7 +72,7 @@ export default function CatalogItemTile({
         >
           <FontAwesomeIcon
             icon={isFavorite ? solidHeart : regularHeart}
-            color={isFavorite ? "red" : "black"}
+            color={isFavorite ? "black" : "black"}
           />
         </div>
       </div>
