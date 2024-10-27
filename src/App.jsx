@@ -10,14 +10,45 @@ import RegisterUser from "./pages/user/RegisterUser";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./App.css";
+import CategoryService from "./services/categories-service";
+import ProductService from "./services/product-service";
 
 function App() {
   const { isAuthenticated, user } = useAuth0();
-
+  const [selectedCategory, setSelectedCategory] = React.useState({});
+  const [allItems, setAllItems] = React.useState([]);
+  const [categories, setCatgories] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState(null);
   const [cartItems, setCartItems] = React.useState(
     JSON.parse(localStorage.getItem(user?.sub)) || []
   );
   const cartCount = getCartCount();
+
+  function updateCategory(category) {
+    console.log(category);
+    setSelectedCategory((prev) => category);
+  }
+
+  React.useEffect(() => {
+    const categoryName = selectedCategory?.name || "";
+    ProductService.getProducts(categoryName)
+      .then((data) => {
+        setAllItems(data);
+        setError(null);
+      })
+      .catch((e) => {
+        setError(e);
+      })
+      .finally(() => setLoading(false));
+  }, [selectedCategory]);
+
+  React.useEffect(() => {
+    CategoryService.getCategories()
+      .then((data) => setCatgories(data))
+      .catch((err) => setError(err))
+      .finally(() => setLoading(false));
+  }, []);
 
   function handleAddToCart(updatedItem) {
     console.log(cartItems);
@@ -91,8 +122,12 @@ function App() {
                 <Layout
                   isAuthenticated={isAuthenticated}
                   user={user}
+                  allItems={allItems}
+                  categories={categories}
+                  category={selectedCategory}
                   add={handleAddToCart}
                   remove={handleRemoveFromCart}
+                  updateCategory={updateCategory}
                 />
               }
             />

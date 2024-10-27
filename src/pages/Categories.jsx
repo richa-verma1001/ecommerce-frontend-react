@@ -2,21 +2,17 @@ import React from "react";
 import "../styles/categories.css";
 import CategoryService from "../services/categories-service";
 
-export default function Categories({ handleCategory }) {
-  const [categories, setCatgories] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
-
-  React.useEffect(() => {
-    CategoryService.getCategories()
-      .then((data) => setCatgories(data))
-      .catch((err) => setError(err))
-      .finally(() => setLoading(false));
-  }, []);
-
+export default function Categories({
+  categories,
+  selectedCategory,
+  handleCategory,
+}) {
   function renderCategories() {
     return categories.map((category) => (
-      <li key={category._id}>
+      <li
+        key={category._id}
+        className={category._id === selectedCategory._id ? "selected" : ""}
+      >
         <button onClick={() => handleCategory(category)}>
           {category.name.toUpperCase()}
         </button>
@@ -24,12 +20,12 @@ export default function Categories({ handleCategory }) {
     ));
   }
 
-  if (loading) return <div>Loading ...</div>;
+  // if (loading) return <div>Loading ...</div>;
   // fetch list of categories from db
   // show items for each category when clicked
   return (
     <div className="sidenav-categories">
-      {error && <div>{error.message}</div>}
+      {/* {error && <div>{error.message}</div>} */}
       <h2 className="heading">DISCOVER</h2>
       <ul>{renderCategories()}</ul>
     </div>

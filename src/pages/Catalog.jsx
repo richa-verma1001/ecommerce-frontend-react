@@ -6,27 +6,10 @@ import ProductService from "../services/product-service";
 export default function Catalog({
   isAuthenticated,
   user,
+  allItems,
   add,
   remove,
-  category,
 }) {
-  const [allItems, setAllItems] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
-
-  React.useEffect(() => {
-    const categoryName = category?.name || "";
-    ProductService.getProducts(categoryName)
-      .then((data) => {
-        setAllItems(data);
-        setError(null);
-      })
-      .catch((e) => {
-        setError(e);
-      })
-      .finally(() => setLoading(false));
-  }, [category]);
-
   function handleDelete(product) {
     ProductService.removeProduct(product._id)
       .then((result) => {
@@ -51,12 +34,12 @@ export default function Catalog({
       </li>
     ));
   }
-  if (loading) return <div>Loading ...</div>;
+  // if (loading) return <div>Loading ...</div>;
 
   return (
     <>
       {/* <h3>CatalogPage</h3> */}
-      {error && <div className="error">{error.message}</div>}
+      {/* {error && <div className="error">{error.message}</div>} */}
       <ul className="catalog-products">{renderProductList()}</ul>
       <p></p>
       {/* <div>

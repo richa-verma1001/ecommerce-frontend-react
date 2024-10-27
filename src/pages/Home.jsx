@@ -48,9 +48,6 @@ export default function Home({ isAuthenticated, user, cartCount }) {
               <Login />
             </li>
           </div>
-          {/* <li>
-            <NavLink to="/register">Register</NavLink>
-          </li> */}
         </ul>
       </header>
       <main>
