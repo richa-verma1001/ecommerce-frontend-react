@@ -13,9 +13,7 @@ function LogoutButton() {
           onClick={() =>
             logout({ logoutParams: { returnTo: window.location.origin } })
           }
-        >
-          Logout
-        </a>
+        ></a>
       )}
     </div>
   );

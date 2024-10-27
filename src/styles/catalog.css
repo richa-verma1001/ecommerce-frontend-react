@@ -13,6 +13,7 @@
 
 .product-tile {
   border: 0.5px solid lightgray;
+  padding: 0 0 5px 0;
 }
 a.product-tile__image{
   /* border: 1px dotted black; */
@@ -39,6 +40,7 @@ a.product-tile__desc {
 .product-tile__info {
   display: flex;
   justify-content: space-between;
+  padding: 0 5px 0 5px;
 }
 
 .product-tile__info .left{
@@ -64,10 +66,10 @@ a.product-tile__desc {
   display: flex;
   flex-direction: row;
   gap: 8px;
+  padding: 0 5px 0 5px;
 }
 
 .catalog-products button {
-  /* margin:1rem; */
   padding: 0.2rem 0.5rem;
   border: 1px solid lightgray;
   border-radius: 50%;
