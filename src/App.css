@@ -32,8 +32,18 @@ ul {
 }
 
 .error {
-  background-color: yellow;
-  color: red;
+  /* background-color: #ff4d4d; */
+  /* color: #ffffff; */
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: 2px solid #e63946;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+}
+
+.error_icon {
+  padding-right: 5px;
 }
 
 .message {

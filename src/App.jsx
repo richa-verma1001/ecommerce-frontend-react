@@ -89,6 +89,7 @@ function App() {
                 user={user}
                 cartCount={cartCount}
                 isLoading={loading}
+                isError={error}
               />
             }
           >

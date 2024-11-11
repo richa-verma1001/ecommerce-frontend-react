@@ -4,8 +4,15 @@ import Login from "./Login";
 import "../styles/navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 
-export default function Home({ isAuthenticated, user, cartCount, isLoading }) {
+export default function Home({
+  isAuthenticated,
+  user,
+  cartCount,
+  isLoading,
+  isError,
+}) {
   return (
     <div className="container">
       <header>
@@ -55,6 +62,14 @@ export default function Home({ isAuthenticated, user, cartCount, isLoading }) {
           <div className="loading-container">
             <div className="spinner"></div>
             <p>Loading content, please wait ...</p>
+          </div>
+        )}
+        {isError && (
+          <div className="error">
+            <div className="error_icon">
+              <FontAwesomeIcon icon={faExclamation} />
+            </div>
+            An error occured. {isError.message}
           </div>
         )}
         <Outlet />
