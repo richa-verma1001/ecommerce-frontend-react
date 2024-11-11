@@ -5,7 +5,7 @@ import CategoryService from "../../services/categories-service";
 export default function Categories({
   categories,
   selectedCategory,
-  handleCategory,
+  updateCategory,
 }) {
   function renderCategories() {
     return categories.map((category) => (
@@ -13,19 +13,14 @@ export default function Categories({
         key={category._id}
         className={category._id === selectedCategory._id ? "selected" : ""}
       >
-        <button onClick={() => handleCategory(category)}>
+        <button onClick={() => updateCategory(category)}>
           {category.name.toUpperCase()}
         </button>
       </li>
     ));
   }
-
-  // if (loading) return <div>Loading ...</div>;
-  // fetch list of categories from db
-  // show items for each category when clicked
   return (
     <div className="sidenav-categories">
-      {/* {error && <div>{error.message}</div>} */}
       <h2 className="heading">DISCOVER</h2>
       <ul>{renderCategories()}</ul>
     </div>

@@ -16,6 +16,7 @@ import "./App.css";
 function App() {
   const { isAuthenticated, user } = useAuth0();
   const [selectedCategory, setSelectedCategory] = React.useState({});
+  const [selectedTag, setSelectedTag] = React.useState("");
   const [allItems, setAllItems] = React.useState([]);
   const [categories, setCatgories] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
@@ -42,9 +43,15 @@ function App() {
       .finally(() => setLoading(false));
   }, []);
 
-  function updateCategory(category) {
+  function handleCategoryChange(category) {
+    console.log("Change category called");
     console.log(category);
     setSelectedCategory((prev) => category);
+  }
+
+  function updateTag(tag) {
+    console.log(tag);
+    setSelectedTag((prev) => tag);
   }
 
   function handleAddToCart(updatedItem) {
@@ -100,9 +107,11 @@ function App() {
                   allItems={allItems}
                   categories={categories}
                   category={selectedCategory}
+                  tag={selectedTag}
                   add={handleAddToCart}
                   remove={handleRemoveFromCart}
-                  updateCategory={updateCategory}
+                  updateCategory={handleCategoryChange}
+                  updateTag={updateTag}
                 />
               }
             />
@@ -113,8 +122,11 @@ function App() {
                   isAuthenticated={isAuthenticated}
                   user={user}
                   allItems={allItems}
+                  categories={categories}
+                  category={selectedCategory}
                   add={handleAddToCart}
                   remove={handleRemoveFromCart}
+                  updateCategory={handleCategoryChange}
                 />
               }
             />

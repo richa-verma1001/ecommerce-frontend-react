@@ -1,10 +1,10 @@
 import React from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import { faBookmark as solidHeart } from "@fortawesome/free-solid-svg-icons";
 
-export default function CatalogItemTile({
+export default function ProductTile({
   isAuthenticated,
   user,
   item,
@@ -19,12 +19,6 @@ export default function CatalogItemTile({
     location.pathname === "/" || location.pathname === "/cart"
       ? "/catalog"
       : "";
-
-  // console.log(`item: ${item.name} count:${count}`);
-  const tileCount =
-    location.pathname === "/" || location.pathname === "/catalog"
-      ? count
-      : item.cartQuantity;
 
   const handleToggle = () => {
     setIsFavorite((prev) => !prev);

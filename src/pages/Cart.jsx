@@ -1,5 +1,5 @@
 import React from "react";
-import CatalogItemTile from "./components/CatalogItemTile";
+import CatalogItemTile from "./components/ProductTile";
 import "../styles/catalog.css";
 
 export default function Cart({ items, add, remove }) {

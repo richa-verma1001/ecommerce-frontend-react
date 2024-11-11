@@ -1,59 +1,43 @@
 import React from "react";
-import CatalogItemTile from "./components/CatalogItemTile";
 import "../styles/catalog.css";
-import ProductService from "../services/product-service";
+import CatalogItemList from "./components/CatalogItemList";
+import CategoryFilter from "./components/CategoryFilter";
+import Sort from "./components/Sort";
 
 export default function Catalog({
   isAuthenticated,
   user,
   allItems,
+  categories,
   category,
+  tag,
   add,
   remove,
+  updateCategory,
 }) {
-  function handleDelete(product) {
-    ProductService.removeProduct(product._id)
-      .then((result) => {
-        setAllItems((prev) => {
-          return prev.filter((item) => item._id !== product._id);
-        });
-      })
-      .catch((e) => setError(e));
-  }
-
-  function renderProductList() {
-    return allItems.map((item) => {
-      if (
-        !category ||
-        Object.keys(category).length === 0 ||
-        category.name === "All Categories" ||
-        item.category === category.name
-      )
-        return (
-          <li key={item._id}>
-            <CatalogItemTile
-              isAuthenticated={isAuthenticated}
-              user={user}
-              item={item}
-              add={add}
-              remove={remove}
-              deleteItem={handleDelete}
-            />
-          </li>
-        );
-    });
-  }
-  // if (loading) return <div>Loading ...</div>;
-
+  // console.log(categories);
   return (
     <>
-      {/* <h3>CatalogPage</h3> */}
-      {/* {error && <div className="error">{error.message}</div>} */}
-      <ul className="catalog-products">{renderProductList()}</ul>
-      <p></p>
-      {/* <div>
-        <Outlet />
-      </div> */}
+      <div className="filters">
+        <CategoryFilter
+          categories={categories}
+          selectedCategory={category}
+          updateCategory={updateCategory}
+        />
+
+        <Sort />
+      </div>
+      <div>
+        <CatalogItemList
+          isAuthenticated={isAuthenticated}
+          user={user}
+          allItems={allItems}
+          category={category}
+          tag={tag}
+          add={add}
+          remove={remove}
+        />
+      </div>
     </>
   );
 }

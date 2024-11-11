@@ -4,6 +4,17 @@
   padding: 0;
 }
 
+button:hover, button:focus {
+  outline: none;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
 .container {
   min-width: 60vw;
   display: flex;
@@ -12,10 +23,6 @@
   gap: 40px;
   padding: 2rem;
   background: #FAFAFA;
-}
-
-ul {
-  list-style: none;
 }
 
 .logo {

@@ -11,6 +11,7 @@
   align-items: center;
 }
 
+/** Product Tile Styles */
 .product-tile {
   border: 0.5px solid lightgray;
   padding: 0 0 5px 0;
@@ -54,6 +55,7 @@ a.product-tile__desc {
   justify-content: right;
   align-items: center;
 }
+/***********************************/
 
 .catalog-item__image {
   border: 1px solid black;
@@ -75,4 +77,21 @@ a.product-tile__desc {
   border: 1px solid lightgray;
   border-radius: 50%;
 }
+
+
+/*********************************/
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  padding: 0 0 20px 0;
+}
+
+.selectionBox {
+  display: flex;
+  padding: 5px 5px;
+  border: 1px solid black;
+  
+}
+/*********************************/
 
