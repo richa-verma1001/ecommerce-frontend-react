@@ -20,7 +20,6 @@ export default function CatalogItemTile({
       ? "/catalog"
       : "";
 
-  // console.log(`item: ${item.name} count:${count}`);
   const tileCount =
     location.pathname === "/" || location.pathname === "/catalog"
       ? count

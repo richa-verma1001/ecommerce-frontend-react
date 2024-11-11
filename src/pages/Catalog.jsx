@@ -10,6 +10,7 @@ export default function Catalog({
   category,
   add,
   remove,
+  catalogDisplayCount,
 }) {
   function handleDelete(product) {
     ProductService.removeProduct(product._id)
@@ -22,13 +23,18 @@ export default function Catalog({
   }
 
   function renderProductList() {
-    return allItems.map((item) => {
-      if (
-        !category ||
-        Object.keys(category).length === 0 ||
-        category.name === "All Categories" ||
-        item.category === category.name
-      )
+    const result = allItems
+      .filter((item) => {
+        if (
+          !category ||
+          Object.keys(category).length === 0 ||
+          category.name === "All Categories" ||
+          item.category === category.name
+        ) {
+          return item;
+        }
+      })
+      .map((item) => {
         return (
           <li key={item._id}>
             <CatalogItemTile
@@ -41,19 +47,15 @@ export default function Catalog({
             />
           </li>
         );
-    });
+      });
+    if (result.length > catalogDisplayCount)
+      return result.splice(0, catalogDisplayCount);
+    return result;
   }
-  // if (loading) return <div>Loading ...</div>;
 
   return (
     <>
-      {/* <h3>CatalogPage</h3> */}
-      {/* {error && <div className="error">{error.message}</div>} */}
       <ul className="catalog-products">{renderProductList()}</ul>
-      <p></p>
-      {/* <div>
-        <Outlet />
-      </div> */}
     </>
   );
 }

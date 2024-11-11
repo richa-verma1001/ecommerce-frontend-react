@@ -12,8 +12,8 @@ export default function Layout({
   add,
   remove,
   updateCategory,
+  catalogDisplayCount,
 }) {
-  console.log(category);
   return (
     <div className="homePageLayout">
       <div className="mainContent">
@@ -25,6 +25,7 @@ export default function Layout({
           category={category}
           add={add}
           remove={remove}
+          catalogDisplayCount={catalogDisplayCount}
         />
       </div>
       <div className="sideNav">

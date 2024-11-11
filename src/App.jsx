@@ -105,6 +105,7 @@ function App() {
                   add={handleAddToCart}
                   remove={handleRemoveFromCart}
                   updateCategory={updateCategory}
+                  catalogDisplayCount={12}
                 />
               }
             />

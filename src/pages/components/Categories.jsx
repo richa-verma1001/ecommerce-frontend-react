@@ -20,12 +20,8 @@ export default function Categories({
     ));
   }
 
-  // if (loading) return <div>Loading ...</div>;
-  // fetch list of categories from db
-  // show items for each category when clicked
   return (
     <div className="sidenav-categories">
-      {/* {error && <div>{error.message}</div>} */}
       <h2 className="heading2">DISCOVER</h2>
       <ul>{renderCategories()}</ul>
     </div>
