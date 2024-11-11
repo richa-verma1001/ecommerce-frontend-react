@@ -26,7 +26,7 @@ export default function Categories({
   return (
     <div className="sidenav-categories">
       {/* {error && <div>{error.message}</div>} */}
-      <h2 className="heading">DISCOVER</h2>
+      <h2 className="heading2">DISCOVER</h2>
       <ul>{renderCategories()}</ul>
     </div>
   );

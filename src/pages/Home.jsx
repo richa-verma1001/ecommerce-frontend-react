@@ -20,7 +20,7 @@ export default function Home({
           <div className="navbar-left">
             <li>
               <NavLink className="navbar" to="/">
-                #INSpire
+                #Inspire
               </NavLink>
             </li>
             <li>

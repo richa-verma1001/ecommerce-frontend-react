@@ -4,12 +4,6 @@
   gap: 20px;
 }
 
-.sidenav-categories .heading {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .sidenav-categories ul {
   display: flex;
   flex-direction: row;

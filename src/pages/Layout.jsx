@@ -17,6 +17,7 @@ export default function Layout({
   return (
     <div className="homePageLayout">
       <div className="mainContent">
+        <h2 className="heading2">FEATURED PRODUCTS</h2>
         <Catalog
           isAuthenticated={isAuthenticated}
           user={user}

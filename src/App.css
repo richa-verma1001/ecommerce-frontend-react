@@ -81,6 +81,12 @@ ul {
   }
 }
 
+.heading2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 
 @keyframes logo-spin {
   from {
