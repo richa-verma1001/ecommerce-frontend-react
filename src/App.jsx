@@ -88,6 +88,7 @@ function App() {
                 isAuthenticated={isAuthenticated}
                 user={user}
                 cartCount={cartCount}
+                isLoading={loading}
               />
             }
           >

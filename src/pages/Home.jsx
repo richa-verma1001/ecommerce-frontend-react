@@ -5,7 +5,7 @@ import "../styles/navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
-export default function Home({ isAuthenticated, user, cartCount }) {
+export default function Home({ isAuthenticated, user, cartCount, isLoading }) {
   return (
     <div className="container">
       <header>
@@ -51,6 +51,12 @@ export default function Home({ isAuthenticated, user, cartCount }) {
         </ul>
       </header>
       <main>
+        {isLoading && (
+          <div className="loading-container">
+            <div className="spinner"></div>
+            <p>Loading content, please wait ...</p>
+          </div>
+        )}
         <Outlet />
       </main>
     </div>
