@@ -17,7 +17,7 @@ function App() {
   const { isAuthenticated, user } = useAuth0();
   const [selectedCategory, setSelectedCategory] = React.useState({});
   const [allItems, setAllItems] = React.useState(
-    JSON.parse(localStorage.getItem("catalog")) || []
+    JSON.parse(sessionStorage.getItem("catalog")) || []
   );
   const [categories, setCatgories] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
@@ -47,7 +47,7 @@ function App() {
   }, []);
 
   React.useEffect(() => {
-    localStorage.setItem("catalog", JSON.stringify(allItems));
+    sessionStorage.setItem("catalog", JSON.stringify(allItems));
   }, [allItems]);
 
   function updateCategory(category) {

@@ -1,4 +1,4 @@
-/** Most likely obsolete file */
+/** Most likely obsolete file, added to implement filters on the catalog page */
 import React from "react";
 import Categories from "./components/Categories";
 

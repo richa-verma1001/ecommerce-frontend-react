@@ -69,3 +69,26 @@
 p.italic {
   font-style: italic;
 }
+
+
+/* Media Queries */
+@media (max-width: 1536px) {}
+
+/* xl */
+@media (max-width: 1280px) {}
+
+/* lg */
+@media (max-width: 1024px) {}
+
+/* md */
+@media (max-width: 768px) {
+  .cart-layout {
+    flex-direction: column;
+  }
+  .cart-products .product-tile{
+    max-width: none;
+  }
+}
+
+/* sm */
+@media (max-width: 640px) {}
