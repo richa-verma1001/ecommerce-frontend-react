@@ -10,18 +10,23 @@ export default function Cart({ items, add, remove }) {
   const [subTotal, setSubTotal] = React.useState(0);
 
   React.useEffect(() => {
-    setCartItems((prev) => getCartItems());
+    const itemsInCart = getCartItems();
+    const total = itemsInCart
+      .reduce((acc, item) => {
+        return (
+          acc +
+          Number.parseInt(item.cartQuantity) * Number.parseFloat(item.price)
+        );
+      }, 0)
+      .toFixed(2);
+    const tax = ((8.25 * total) / 100).toFixed(2);
+    const finalPrice = (
+      Number.parseFloat(total) + Number.parseFloat(tax)
+    ).toFixed(2);
 
-    const total = cartItems.reduce((acc, item) => {
-      return acc + Number.parseFloat(item.price);
-    }, 0);
-
-    console.log(total);
+    setCartItems(itemsInCart);
     setCartTotal(total);
-    const tax = Number.parseFloat(8.25 * total) / 100;
     setSalesTax(tax);
-
-    const finalPrice = total + tax;
     setSubTotal(finalPrice);
   }, [items]);
 

@@ -43,12 +43,10 @@ function App() {
   }, []);
 
   function updateCategory(category) {
-    console.log(category);
     setSelectedCategory((prev) => category);
   }
 
   function handleAddToCart(updatedItem) {
-    console.log(updatedItem);
     setAllItems((prev) => {
       return prev.map((item) =>
         item._id === updatedItem._id
@@ -63,7 +61,6 @@ function App() {
 
   // TODO: handle disable button for 0 or negative quantities
   function handleRemoveFromCart(updatedItem) {
-    console.log(updatedItem);
     setAllItems((prev) => {
       return prev.map((item) =>
         item._id === updatedItem._id
