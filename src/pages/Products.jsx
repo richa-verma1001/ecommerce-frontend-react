@@ -1,5 +1,5 @@
+/** Most likely obsolete file */
 import React from "react";
-import { Outlet } from "react-router-dom";
 import Categories from "./components/Categories";
 
 export default function Products(

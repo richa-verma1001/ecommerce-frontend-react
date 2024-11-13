@@ -65,3 +65,7 @@
   color: #ffffff;
   text-align: center;
 }
+
+p.italic {
+  font-style: italic;
+}

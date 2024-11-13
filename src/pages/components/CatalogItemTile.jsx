@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import { faBookmark as solidHeart } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function CatalogItemTile({
   isAuthenticated,
@@ -12,6 +13,7 @@ export default function CatalogItemTile({
   remove,
   deleteItem,
   isCart,
+  handleCartDelete,
 }) {
   const location = useLocation();
   const [isFavorite, setIsFavorite] = React.useState(false);
@@ -53,15 +55,27 @@ export default function CatalogItemTile({
                 : item.name}
             </p>
           </div>
-          <div
-            className="right"
-            onClick={handleToggle}
-            style={{ cursor: "pointer", fontSize: "0.9rem" }}
-          >
-            <FontAwesomeIcon
-              icon={isFavorite ? solidHeart : regularHeart}
-              color={isFavorite ? "black" : "black"}
-            />
+          <div className="right">
+            {!isCart && (
+              <div
+                className="bookmark"
+                onClick={handleToggle}
+                style={{ cursor: "pointer", fontSize: "0.9rem" }}
+              >
+                <FontAwesomeIcon
+                  icon={isFavorite ? solidHeart : regularHeart}
+                  color={isFavorite ? "black" : "black"}
+                />
+              </div>
+            )}
+            {isCart && (
+              <div
+                className="removeFromCart"
+                onClick={() => handleCartDelete(item)}
+              >
+                <FontAwesomeIcon icon={faTrash} color={"black"} />
+              </div>
+            )}
           </div>
         </div>
         <div className="product-tile__info">

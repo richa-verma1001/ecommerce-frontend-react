@@ -16,7 +16,9 @@ import "./App.css";
 function App() {
   const { isAuthenticated, user } = useAuth0();
   const [selectedCategory, setSelectedCategory] = React.useState({});
-  const [allItems, setAllItems] = React.useState([]);
+  const [allItems, setAllItems] = React.useState(
+    JSON.parse(localStorage.getItem("catalog")) || []
+  );
   const [categories, setCatgories] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
@@ -24,15 +26,17 @@ function App() {
   const cartCount = getCartCount();
 
   React.useEffect(() => {
-    ProductService.getProducts()
-      .then((data) => {
-        setAllItems(data);
-        setError(null);
-      })
-      .catch((e) => {
-        setError(e);
-      })
-      .finally(() => setLoading(false));
+    if (allItems.length === 0) {
+      ProductService.getProducts()
+        .then((data) => {
+          setAllItems(data);
+          setError(null);
+        })
+        .catch((e) => {
+          setError(e);
+        })
+        .finally(() => setLoading(false));
+    }
   }, []);
 
   React.useEffect(() => {
@@ -41,6 +45,10 @@ function App() {
       .catch((err) => setError(err))
       .finally(() => setLoading(false));
   }, []);
+
+  React.useEffect(() => {
+    localStorage.setItem("catalog", JSON.stringify(allItems));
+  }, [allItems]);
 
   function updateCategory(category) {
     setSelectedCategory((prev) => category);
@@ -66,6 +74,14 @@ function App() {
         item._id === updatedItem._id
           ? { ...item, cartQuantity: item.cartQuantity - 1 }
           : item
+      );
+    });
+  }
+
+  function handleRemoveAllFromCart(updatedItem) {
+    setAllItems((prev) => {
+      return prev.map((item) =>
+        item._id === updatedItem._id ? { ...item, cartQuantity: 0 } : item
       );
     });
   }
@@ -127,6 +143,7 @@ function App() {
                   items={allItems}
                   add={handleAddToCart}
                   remove={handleRemoveFromCart}
+                  removeFromCart={handleRemoveAllFromCart}
                 />
               }
             />

@@ -3,11 +3,12 @@ import CatalogItemTile from "./components/CatalogItemTile";
 import "../styles/cart.css";
 import "../styles/catalog.css";
 
-export default function Cart({ items, add, remove }) {
+export default function Cart({ items, add, remove, removeFromCart }) {
   const [cartItems, setCartItems] = React.useState([]);
   const [cartTotal, setCartTotal] = React.useState(0);
   const [salexTax, setSalesTax] = React.useState(0);
   const [subTotal, setSubTotal] = React.useState(0);
+  const [isEmpty, setIsEmpty] = React.useState(true);
 
   React.useEffect(() => {
     const itemsInCart = getCartItems();
@@ -28,11 +29,15 @@ export default function Cart({ items, add, remove }) {
     setCartTotal(total);
     setSalesTax(tax);
     setSubTotal(finalPrice);
+
+    itemsInCart.length === 0 ? setIsEmpty(true) : setIsEmpty(false);
   }, [items]);
 
   function getCartItems() {
     return items.filter((item) => item.cartQuantity > 0);
   }
+
+  function removeItemFromCart() {}
 
   function renderCartItems() {
     const result = items.map((item) => {
@@ -45,6 +50,7 @@ export default function Cart({ items, add, remove }) {
               add={add}
               remove={remove}
               isCart={true}
+              handleCartDelete={removeFromCart}
             />
           </li>
         );
@@ -58,12 +64,19 @@ export default function Cart({ items, add, remove }) {
       <div className="cart-layout__left">
         <h3>Cart</h3>
         <hr className="separator" />
-        <ul className="cart-products">{renderCartItems()}</ul>
+        <ul className="cart-products">
+          {isEmpty ? (
+            <p className="italic">No Items in Cart</p>
+          ) : (
+            renderCartItems()
+          )}
+        </ul>
       </div>
-      {items.length !== 0 && (
-        <div className="cart-layout__right">
-          <h3>Order Summary</h3>
-          <hr className="separator" />
+
+      <div className="cart-layout__right">
+        <h3>Order Summary</h3>
+        <hr className="separator" />
+        {!isEmpty ? (
           <div className="order-summary-table">
             <div>
               <div className="col1">Subtotal</div>
@@ -82,29 +95,10 @@ export default function Cart({ items, add, remove }) {
               <button>Checkout</button>
             </div>
           </div>
-        </div>
-      )}
+        ) : (
+          <p>No order created</p>
+        )}
+      </div>
     </div>
   );
-}
-
-{
-  /* <li key={item._id}>
-  {item.name}:{item.cartQuantity}
-</li>; */
-}
-
-{
-  /* <NavLink to={`./${item._id}`}>
-            <img src={imageLogo} alt="image-logo" width="20px" height="20px" />
-          </NavLink>
-          <button onClick={() => handleDelete(item)}>x</button>
-          <p>{item.name}</p>
-          <p>{item.category}</p>
-          <div className="catalog-item-buttonList">
-            Quantity:
-            <button onClick={() => remove(item)}>-</button>
-            {item.quantity}
-            <button onClick={() => add(item)}>+</button>
-          </div> */
 }
