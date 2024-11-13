@@ -11,6 +11,7 @@ export default function CatalogItemTile({
   add,
   remove,
   deleteItem,
+  isCart,
 }) {
   const location = useLocation();
   const [isFavorite, setIsFavorite] = React.useState(false);
@@ -39,12 +40,32 @@ export default function CatalogItemTile({
     remove(item);
   }
   return (
-    <div className="product-tile">
-      <NavLink className="product-tile__image" to={`/catalog/${item._id}`}>
-        <img src={item.imageUrl} alt="image-logo" />
-      </NavLink>
-      <div className="product-tile__info">
-        {/* <div className="left">
+    <div className="cart-details">
+      <div className="product-tile">
+        <NavLink className="product-tile__image" to={`/catalog/${item._id}`}>
+          <img src={item.imageUrl} alt="image-logo" />
+        </NavLink>
+        <div className="product-tile__info">
+          <div className="left">
+            <p>
+              {item.name.length > 20
+                ? `${item.name.slice(0, 20)}...`
+                : item.name}
+            </p>
+          </div>
+          <div
+            className="right"
+            onClick={handleToggle}
+            style={{ cursor: "pointer", fontSize: "0.9rem" }}
+          >
+            <FontAwesomeIcon
+              icon={isFavorite ? solidHeart : regularHeart}
+              color={isFavorite ? "black" : "black"}
+            />
+          </div>
+        </div>
+        <div className="product-tile__info">
+          {/* <div className="left">
           <NavLink
             className="product-tile__desc "
             to={`.${isHomePage}/${item._id}`}
@@ -56,25 +77,32 @@ export default function CatalogItemTile({
             </p>
           </NavLink>
         </div> */}
-        <div className="left catalog-item__buttonList">
-          <button onClick={() => removeFromCart(item)}>-</button>
-          {item.cartQuantity || 0}
-          <button onClick={() => addToCart(item)}>+</button>
-          {isAuthenticated && user.name === "Richa Verma" && (
-            <button onClick={() => deleteItem(item)}>x</button>
-          )}
-        </div>
-        <div
-          className="right"
-          onClick={handleToggle}
-          style={{ cursor: "pointer", fontSize: "16px" }}
-        >
-          <FontAwesomeIcon
-            icon={isFavorite ? solidHeart : regularHeart}
-            color={isFavorite ? "black" : "black"}
-          />
+          <div className="left catalog-item__buttonList">
+            <button onClick={() => removeFromCart(item)}>
+              <p>-</p>
+            </button>
+            <p>{item.cartQuantity || 0}</p>
+            <button onClick={() => addToCart(item)}>
+              <p>+</p>
+            </button>
+            {isAuthenticated && user.name === "Richa Verma" && (
+              <button onClick={() => deleteItem(item)}>
+                <p>x</p>
+              </button>
+            )}
+          </div>
+          <div className="right">
+            <p>
+              $
+              {isCart
+                ? Number.parseFloat(item.price) *
+                  Number.parseInt(item.cartQuantity)
+                : Number.parseFloat(item.price)}
+            </p>
+          </div>
         </div>
       </div>
+      {/* <div className="item-details">Each Item</div> */}
     </div>
   );
 }
