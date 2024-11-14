@@ -25,11 +25,11 @@ export default function Home({
                 #Inspire
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink className="navbar" to="/about">
                 About
               </NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink className="navbar" to="/catalog">
                 Catalog
