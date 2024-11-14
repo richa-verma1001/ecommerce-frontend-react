@@ -11,6 +11,7 @@ export default function Catalog({
   add,
   remove,
   catalogDisplayCount,
+  handleBookmark,
 }) {
   function handleDelete(product) {
     ProductService.removeProduct(product._id)
@@ -44,6 +45,7 @@ export default function Catalog({
               add={add}
               remove={remove}
               deleteItem={handleDelete}
+              handleBookmark={handleBookmark}
             />
           </li>
         );

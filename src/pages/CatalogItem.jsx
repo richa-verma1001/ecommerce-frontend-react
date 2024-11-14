@@ -17,7 +17,6 @@ export default function CatalogItem() {
   }, [params.id]);
 
   if (loading) return <div>Loading ..</div>;
-  console.log(product);
   return (
     <div className="product-page">
       <div className="left">

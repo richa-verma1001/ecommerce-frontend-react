@@ -54,6 +54,16 @@ function App() {
     setSelectedCategory((prev) => category);
   }
 
+  function handleBookmark(updateItem) {
+    console.log(updateItem);
+    setAllItems((prev) => {
+      return prev.map((item) =>
+        item._id === updateItem._id
+          ? { ...item, isFavorite: !updateItem.isFavorite }
+          : item
+      );
+    });
+  }
   function handleAddToCart(updatedItem) {
     setAllItems((prev) => {
       return prev.map((item) =>
@@ -119,6 +129,7 @@ function App() {
                   remove={handleRemoveFromCart}
                   updateCategory={updateCategory}
                   catalogDisplayCount={12}
+                  handleBookmark={handleBookmark}
                 />
               }
             />
@@ -131,6 +142,7 @@ function App() {
                   allItems={allItems}
                   add={handleAddToCart}
                   remove={handleRemoveFromCart}
+                  handleBookmark={handleBookmark}
                 />
               }
             />

@@ -14,9 +14,10 @@ export default function CatalogItemTile({
   deleteItem,
   isCart,
   handleCartDelete,
+  handleBookmark,
 }) {
   const location = useLocation();
-  const [isFavorite, setIsFavorite] = React.useState(false);
+  const [isFavorite, setIsFavorite] = React.useState(item.isFavorite || false);
   const [count, setCount] = React.useState(0);
   const isHomePage =
     location.pathname === "/" || location.pathname === "/cart"
@@ -30,6 +31,7 @@ export default function CatalogItemTile({
 
   const handleToggle = () => {
     setIsFavorite((prev) => !prev);
+    // handleBookmark
   };
 
   function addToCart(item) {
@@ -59,12 +61,12 @@ export default function CatalogItemTile({
             {!isCart && (
               <div
                 className="bookmark"
-                onClick={handleToggle}
+                onClick={() => handleBookmark(item)}
                 style={{ cursor: "pointer", fontSize: "0.9rem" }}
               >
                 <FontAwesomeIcon
-                  icon={isFavorite ? solidHeart : regularHeart}
-                  color={isFavorite ? "black" : "black"}
+                  icon={item.isFavorite ? solidHeart : regularHeart}
+                  color={item.isFavorite ? "black" : "black"}
                 />
               </div>
             )}
@@ -106,13 +108,7 @@ export default function CatalogItemTile({
             )}
           </div>
           <div className="right">
-            <p>
-              $
-              {isCart
-                ? Number.parseFloat(item.price) *
-                  Number.parseInt(item.cartQuantity)
-                : Number.parseFloat(item.price)}
-            </p>
+            <p>${Number.parseFloat(item.price)}</p>
           </div>
         </div>
       </div>

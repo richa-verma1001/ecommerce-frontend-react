@@ -13,6 +13,7 @@ export default function Layout({
   remove,
   updateCategory,
   catalogDisplayCount,
+  handleBookmark,
 }) {
   return (
     <div className="homePageLayout">
@@ -26,6 +27,7 @@ export default function Layout({
           add={add}
           remove={remove}
           catalogDisplayCount={catalogDisplayCount}
+          handleBookmark={handleBookmark}
         />
       </div>
       <div className="sideNav">

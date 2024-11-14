@@ -79,16 +79,16 @@ export default function Cart({ items, add, remove, removeFromCart }) {
         {!isEmpty ? (
           <div className="order-summary-table">
             <div>
-              <div className="col1">Subtotal</div>
+              <div className="col1">Items({cartItems.length}):</div>
               <div className="col2">${cartTotal}</div>
             </div>
             <div>
-              <div className="col1">Tax</div>
+              <div className="col1">Estimated Tax:</div>
               <div className="col2">${salexTax}</div>
             </div>
             <hr className="separator" />
             <div>
-              <div className="col1">Total</div>
+              <div className="col1">Order Total:</div>
               <div className="col2">${subTotal}</div>
             </div>
             <div className="checkout">
